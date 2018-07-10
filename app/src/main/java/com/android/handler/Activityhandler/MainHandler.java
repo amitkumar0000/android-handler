@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import com.android.handler.MainActivity;
 
-public class Activity_Hander extends Handler{
-    final String TAG = "Activity_Hander";
+public class MainHandler extends Handler{
+    final String TAG = "MainHandler";
     Context context;
     TextView textView;
 
 
 
-    public Activity_Hander(MainActivity mainActivity, TextView viewById) {
+    public MainHandler(MainActivity mainActivity, TextView viewById) {
         this.textView = viewById;
         this.context = mainActivity;
     }

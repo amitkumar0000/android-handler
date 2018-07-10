@@ -12,13 +12,13 @@ import com.android.handler.MainActivity;
 import static com.android.handler.utils.Contants.MSG;
 import static com.android.handler.utils.Contants.MSG_2;
 
-public class Handler_Thread extends HandlerThread{
+public class HandlerThreadSample extends HandlerThread{
     final String TAG = "Activity_HanderThread";
 
 
     Handler handler;
     Handler mainHandler;
-    public Handler_Thread(String name,Handler mainHandler) {
+    public HandlerThreadSample(String name, Handler mainHandler) {
         super(name);
         this.mainHandler = mainHandler;
     }

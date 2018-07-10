@@ -8,8 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.handler.Activityhandler.Activity_Hander;
-import com.android.handler.Activityhandler.Handler_Thread;
+import com.android.handler.Activityhandler.HandlerThreadSample;
 import com.android.handler.Activityhandler.ThreadSample;
 import com.android.handler.utils.Contants;
 
@@ -19,13 +18,13 @@ import static com.android.handler.utils.Contants.MSG_2;
 public class MainActivity extends AppCompatActivity {
 
     final static String TAG = "ActivityHandler";
-    Activity_Hander activity_hander;
+    com.android.handler.Activityhandler.MainHandler mainHandler;
     MainHandler handler;
     ThreadSample threadSample;
     static TextView textView1;
     static TextView textView2;
     static TextView textView3;
-    Handler_Thread handler_thread;
+    HandlerThreadSample handler_threadClass;
 
 
     @Override
@@ -45,15 +44,15 @@ public class MainActivity extends AppCompatActivity {
         threadSample = new ThreadSample(this,handler);
         threadSample.start();
 
-        handler_thread = new Handler_Thread("handlerThread",handler);
-        handler_thread.start();
+        handler_threadClass = new HandlerThreadSample("handlerThread",handler);
+        handler_threadClass.start();
     }
 
     public void onClick(View view){
         switch (view.getId()){
             case R.id.button1:{
-                activity_hander = new Activity_Hander(this, textView1);
-                activity_hander.sendEmptyMessageDelayed(1,1*1000);
+                mainHandler = new com.android.handler.Activityhandler.MainHandler(this, textView1);
+                mainHandler.sendEmptyMessageDelayed(1,1*1000);
                 break;
             }
             case R.id.button2:{
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case R.id.button3:{
-                handler_thread.sendMsgToMainThread(String.valueOf(textView1.getText()));
+                handler_threadClass.sendMsgToMainThread(String.valueOf(textView1.getText()));
                 break;
             }
         }
@@ -92,6 +91,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         threadSample.stopLooper();
-        handler_thread.quit();
+        handler_threadClass.quit();
     }
 }
